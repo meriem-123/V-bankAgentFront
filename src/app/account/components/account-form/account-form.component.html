@@ -1,0 +1,54 @@
+<div class="full-page">
+<app-header></app-header>
+<form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+  <div class="container content">
+    <mat-grid-list cols="2" rowHeight="6:1">
+      <mat-grid-tile>
+        <mat-form-field class="formField">
+          <mat-label>Type</mat-label>
+          <mat-select disableRipple formControlName="type">
+            <mat-option value="Compte sur carnet">Compte sur carnet</mat-option>
+            <mat-option value="Autre">Autre</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="formField">
+          <mat-label>Devise</mat-label>
+          <mat-select disableRipple formControlName="devise">
+            <mat-option *ngFor="let currency of currencies" [value]="currency">
+              {{ currency.code }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div class="bottomBorder">
+    <div >
+      <mat-grid-list cols="2" rowHeight="16:1">
+        <mat-grid-tile class="fullheight">
+          <div class="center">
+            <button
+              mat-button
+              class="blueButton"
+              type="submit"
+              value="Valider"
+              [disabled]="!accountForm.valid"
+            >
+              Valider
+            </button>
+            <button mat-button class="blueButton" (click)="reset()">
+              Rénitialiser
+            </button>
+            <button mat-button class="blueButton" routerLink="/clients">
+              Annuler
+            </button>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+</form>
+</div>
